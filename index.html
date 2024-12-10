@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crypted</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        input, button {
+            margin: 10px 0;
+            padding: 10px;
+        }
+        textarea {
+            width: 100%;
+            height: 100px;
+            margin-top: 10px;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Crypted String</h1>
+    
+    <div>
+        <h2>Encrypt</h2>
+        <label for="secret">Enter Secret Salt:</label>
+        <input type="text" id="secret" placeholder="Enter your secret salt" />
+        <br />
+        <label for="encryptString">Enter String to Encrypt:</label>
+        <textarea id="encryptString" placeholder="Enter string to encrypt"></textarea>
+        <br />
+        <button onclick="encryptText()">Encrypt</button>
+        <h3>Encrypted String:</h3>
+        <textarea id="encryptedOutput" readonly></textarea>
+    </div>
+    
+    <hr />
+    
+    <div>
+        <h2>Decrypt</h2>
+        <label for="decryptSecret">Enter Secret Salt:</label>
+        <input type="text" id="decryptSecret" placeholder="Enter your secret salt" />
+        <br />
+        <label for="encryptedInput">Enter Encrypted String:</label>
+        <textarea id="encryptedInput" placeholder="Enter string to decrypt"></textarea>
+        <br />
+        <button onclick="decryptText()">Decrypt</button>
+        <h3>Decrypted String:</h3>
+        <textarea id="decryptedOutput" readonly></textarea>
+    </div>
+
+    <script>
+        const cipher = salt => {
+            const textToChars = text => text.split('').map(c => c.charCodeAt(0));
+            const byteHex = n => ("0" + Number(n).toString(16)).substr(-2);
+            const applySaltToChar = code => textToChars(salt).reduce((a,b) => a ^ b, code);
+
+            return text => text.split('')
+              .map(textToChars)
+              .map(applySaltToChar)
+              .map(byteHex)
+              .join('');
+        }
+
+        const decipher = salt => {
+            const textToChars = text => text.split('').map(c => c.charCodeAt(0));
+            const applySaltToChar = code => textToChars(salt).reduce((a,b) => a ^ b, code);
+            return encoded => encoded.match(/.{1,2}/g)
+              .map(hex => parseInt(hex, 16))
+              .map(applySaltToChar)
+              .map(charCode => String.fromCharCode(charCode))
+              .join('');
+        }
+
+        function encryptText() {
+            const salt = document.getElementById("secret").value;
+            const text = document.getElementById("encryptString").value;
+            const myCipher = cipher(salt);
+            const encryptedText = myCipher(text);
+            document.getElementById("encryptedOutput").value = encryptedText;
+        }
+
+        function decryptText() {
+            const salt = document.getElementById("decryptSecret").value;
+            const encryptedText = document.getElementById("encryptedInput").value;
+            const myDecipher = decipher(salt);
+            const decryptedText = myDecipher(encryptedText);
+            document.getElementById("decryptedOutput").value = decryptedText;
+        }
+    </script>
+
+</body>
+</html>
