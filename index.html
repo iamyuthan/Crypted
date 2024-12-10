@@ -9,6 +9,17 @@
             font-family: Arial, sans-serif;
             margin: 20px;
         }
+        nav {
+            margin-bottom: 20px;
+        }
+        nav a {
+            margin-right: 20px;
+            text-decoration: none;
+            color: blue;
+        }
+        .page {
+            display: none;
+        }
         input, button {
             margin: 10px 0;
             padding: 10px;
@@ -23,34 +34,73 @@
 </head>
 <body>
 
-    <h1>Crypted String</h1>
-    
-    <div>
-        <h2>Encrypt</h2>
-        <label for="secret">Enter Secret Salt:</label>
-        <input type="text" id="secret" placeholder="Enter your secret salt" />
-        <br />
-        <label for="encryptString">Enter String to Encrypt:</label>
-        <textarea id="encryptString" placeholder="Enter string to encrypt"></textarea>
-        <br />
-        <button onclick="encryptText()">Encrypt</button>
-        <h3>Encrypted String:</h3>
-        <textarea id="encryptedOutput" readonly></textarea>
+    <nav>
+        <a href="#" onclick="showPage('stringPage')">String Encrypt/Decrypt</a>
+        <a href="#" onclick="showPage('filePage')">File Encrypt/Decrypt</a>
+    </nav>
+
+    <!-- String Encryption/Decryption Page -->
+    <div id="stringPage" class="page">
+        <h1>Crypted String</h1>
+
+        <div>
+            <h2>Encrypt String</h2>
+            <label for="secret">Enter Secret Salt:</label>
+            <input type="text" id="secret" placeholder="Enter your secret salt" />
+            <br />
+            <label for="encryptString">Enter String to Encrypt:</label>
+            <textarea id="encryptString" placeholder="Enter string to encrypt"></textarea>
+            <br />
+            <button onclick="encryptText()">Encrypt</button>
+            <h3>Encrypted String:</h3>
+            <textarea id="encryptedOutput" readonly></textarea>
+        </div>
+
+        <hr />
+
+        <div>
+            <h2>Decrypt String</h2>
+            <label for="decryptSecret">Enter Secret Salt:</label>
+            <input type="text" id="decryptSecret" placeholder="Enter your secret salt" />
+            <br />
+            <label for="encryptedInput">Enter Encrypted String:</label>
+            <textarea id="encryptedInput" placeholder="Enter string to decrypt"></textarea>
+            <br />
+            <button onclick="decryptText()">Decrypt</button>
+            <h3>Decrypted String:</h3>
+            <textarea id="decryptedOutput" readonly></textarea>
+        </div>
     </div>
-    
-    <hr />
-    
-    <div>
-        <h2>Decrypt</h2>
-        <label for="decryptSecret">Enter Secret Salt:</label>
-        <input type="text" id="decryptSecret" placeholder="Enter your secret salt" />
-        <br />
-        <label for="encryptedInput">Enter Encrypted String:</label>
-        <textarea id="encryptedInput" placeholder="Enter string to decrypt"></textarea>
-        <br />
-        <button onclick="decryptText()">Decrypt</button>
-        <h3>Decrypted String:</h3>
-        <textarea id="decryptedOutput" readonly></textarea>
+
+    <!-- File Encryption/Decryption Page -->
+    <div id="filePage" class="page">
+        <h1>Crypted File</h1>
+
+        <div>
+            <h2>Encrypt File</h2>
+            <label for="fileInput">Select File to Encrypt:</label>
+            <input type="file" id="fileInput" />
+            <br />
+            <label for="fileSalt">Enter Secret Salt:</label>
+            <input type="text" id="fileSalt" placeholder="Enter your secret salt" />
+            <br />
+            <button onclick="encryptFile()">Encrypt File</button>
+            <h3>Encrypted String:</h3>
+            <textarea id="encryptedFileOutput" readonly></textarea>
+        </div>
+
+        <hr />
+
+        <div>
+            <h2>Decrypt File</h2>
+            <label for="decryptSalt">Enter Secret Salt:</label>
+            <input type="text" id="decryptSalt" placeholder="Enter your secret salt" />
+            <br />
+            <label for="encryptedFileInput">Enter Encrypted String:</label>
+            <textarea id="encryptedFileInput" placeholder="Enter encrypted file string"></textarea>
+            <br />
+            <button onclick="decryptFile()">Decrypt File</button>
+        </div>
     </div>
 
     <script>
@@ -76,6 +126,14 @@
               .join('');
         }
 
+        // Show specified page
+        function showPage(pageId) {
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => page.style.display = 'none');
+            document.getElementById(pageId).style.display = 'block';
+        }
+
+        // String Encrypt/Decrypt
         function encryptText() {
             const salt = document.getElementById("secret").value;
             const text = document.getElementById("encryptString").value;
@@ -91,6 +149,40 @@
             const decryptedText = myDecipher(encryptedText);
             document.getElementById("decryptedOutput").value = decryptedText;
         }
+
+        // File Encrypt/Decrypt
+        function encryptFile() {
+            const salt = document.getElementById("fileSalt").value;
+            const fileInput = document.getElementById("fileInput").files[0];
+
+            const reader = new FileReader();
+            reader.onload = function(event) {
+                const base64Data = btoa(event.target.result);
+                const myCipher = cipher(salt);
+                const encryptedFile = myCipher(base64Data);
+                document.getElementById("encryptedFileOutput").value = encryptedFile;
+            }
+
+            reader.readAsBinaryString(fileInput);
+        }
+
+        function decryptFile() {
+            const salt = document.getElementById("decryptSalt").value;
+            const encryptedData = document.getElementById("encryptedFileInput").value;
+
+            const myDecipher = decipher(salt);
+            const decryptedBase64 = myDecipher(encryptedData);
+            const binaryData = atob(decryptedBase64);
+
+            const blob = new Blob([new Uint8Array(binaryData.split('').map(c => c.charCodeAt(0)))], {type: 'application/octet-stream'});
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = "decryptedFile";
+            link.click();
+        }
+        
+        // Show the default page
+        showPage('stringPage');
     </script>
 
 </body>
