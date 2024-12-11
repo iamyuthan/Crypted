@@ -9,17 +9,6 @@
             font-family: Arial, sans-serif;
             margin: 20px;
         }
-        nav {
-            margin-bottom: 20px;
-        }
-        nav a {
-            margin-right: 20px;
-            text-decoration: none;
-            color: blue;
-        }
-        .page {
-            display: none;
-        }
         input, button {
             margin: 10px 0;
             padding: 10px;
@@ -30,45 +19,53 @@
             margin-top: 10px;
             padding: 10px;
         }
+        nav {
+            margin-bottom: 20px;
+        }
+        nav a {
+            margin-right: 20px;
+            text-decoration: none;
+            color: blue;
+        }
     </style>
 </head>
 <body>
 
     <nav>
-        <a href="#" onclick="showPage('stringPage')">String Encrypt/Decrypt</a>
-        <a href="#" onclick="showPage('filePage')">File Encrypt/Decrypt</a>
+        <a href="#" onclick="showPage('stringPage')">String Crypted</a>
+        <a href="#" onclick="showPage('filePage')">File Crypted</a>
     </nav>
 
     <!-- String Encryption/Decryption Page -->
     <div id="stringPage" class="page">
         <h1>Crypted String</h1>
-
+        
         <div>
             <h2>Encrypt String</h2>
-            <label for="secret">Enter Secret Salt:</label>
-            <input type="text" id="secret" placeholder="Enter your secret salt" />
+            <label for="aesSalt">Enter Secret Salt (Password):</label>
+            <input type="text" id="aesSalt" placeholder="Enter your secret password" />
             <br />
-            <label for="encryptString">Enter String to Encrypt:</label>
-            <textarea id="encryptString" placeholder="Enter string to encrypt"></textarea>
+            <label for="aesString">Enter String to Encrypt:</label>
+            <textarea id="aesString" placeholder="Enter string to encrypt"></textarea>
             <br />
-            <button onclick="encryptText()">Encrypt</button>
+            <button onclick="encryptString()">Encrypt</button>
             <h3>Encrypted String:</h3>
-            <textarea id="encryptedOutput" readonly></textarea>
+            <textarea id="aesEncryptedOutput" readonly></textarea>
         </div>
 
         <hr />
 
         <div>
             <h2>Decrypt String</h2>
-            <label for="decryptSecret">Enter Secret Salt:</label>
-            <input type="text" id="decryptSecret" placeholder="Enter your secret salt" />
+            <label for="aesSaltDecrypt">Enter Secret Salt (Password):</label>
+            <input type="text" id="aesSaltDecrypt" placeholder="Enter your secret password" />
             <br />
-            <label for="encryptedInput">Enter Encrypted String:</label>
-            <textarea id="encryptedInput" placeholder="Enter string to decrypt"></textarea>
+            <label for="aesEncryptedInput">Enter Encrypted String:</label>
+            <textarea id="aesEncryptedInput" placeholder="Enter string to decrypt"></textarea>
             <br />
-            <button onclick="decryptText()">Decrypt</button>
+            <button onclick="decryptString()">Decrypt</button>
             <h3>Decrypted String:</h3>
-            <textarea id="decryptedOutput" readonly></textarea>
+            <textarea id="aesDecryptedOutput" readonly></textarea>
         </div>
     </div>
 
@@ -81,106 +78,172 @@
             <label for="fileInput">Select File to Encrypt:</label>
             <input type="file" id="fileInput" />
             <br />
-            <label for="fileSalt">Enter Secret Salt:</label>
-            <input type="text" id="fileSalt" placeholder="Enter your secret salt" />
+            <label for="fileSalt">Enter Secret Salt (Password):</label>
+            <input type="text" id="fileSalt" placeholder="Enter your secret password" />
             <br />
             <button onclick="encryptFile()">Encrypt File</button>
             <h3>Encrypted String:</h3>
-            <textarea id="encryptedFileOutput" readonly></textarea>
+            <textarea id="fileEncryptedOutput" readonly></textarea>
         </div>
 
         <hr />
 
         <div>
             <h2>Decrypt File</h2>
-            <label for="decryptSalt">Enter Secret Salt:</label>
-            <input type="text" id="decryptSalt" placeholder="Enter your secret salt" />
+            <label for="decryptSalt">Enter Secret Salt (Password):</label>
+            <input type="text" id="decryptSalt" placeholder="Enter your secret password" />
             <br />
-            <label for="encryptedFileInput">Enter Encrypted String:</label>
-            <textarea id="encryptedFileInput" placeholder="Enter encrypted file string"></textarea>
+            <label for="fileEncryptedInput">Enter Encrypted String:</label>
+            <textarea id="fileEncryptedInput" placeholder="Enter encrypted file string"></textarea>
             <br />
             <button onclick="decryptFile()">Decrypt File</button>
         </div>
     </div>
 
     <script>
-        const cipher = salt => {
-            const textToChars = text => text.split('').map(c => c.charCodeAt(0));
-            const byteHex = n => ("0" + Number(n).toString(16)).substr(-2);
-            const applySaltToChar = code => textToChars(salt).reduce((a,b) => a ^ b, code);
-
-            return text => text.split('')
-              .map(textToChars)
-              .map(applySaltToChar)
-              .map(byteHex)
-              .join('');
+        // Function to generate key from password using PBKDF2
+        async function generateKey(password) {
+            const enc = new TextEncoder();
+            const keyMaterial = await window.crypto.subtle.importKey(
+                "raw", 
+                enc.encode(password), 
+                { name: "PBKDF2" }, 
+                false, 
+                ["deriveKey"]
+            );
+            return window.crypto.subtle.deriveKey(
+                {
+                    name: "PBKDF2",
+                    salt: enc.encode('randomSalt'), 
+                    iterations: 10000,
+                    hash: "SHA-256"
+                },
+                keyMaterial,
+                { name: "AES-GCM", length: 256 },
+                false,
+                ["encrypt", "decrypt"]
+            );
         }
 
-        const decipher = salt => {
-            const textToChars = text => text.split('').map(c => c.charCodeAt(0));
-            const applySaltToChar = code => textToChars(salt).reduce((a,b) => a ^ b, code);
-            return encoded => encoded.match(/.{1,2}/g)
-              .map(hex => parseInt(hex, 16))
-              .map(applySaltToChar)
-              .map(charCode => String.fromCharCode(charCode))
-              .join('');
+        // Function to encrypt string using AES-GCM
+        async function encryptString() {
+            const password = document.getElementById("aesSalt").value;
+            const text = document.getElementById("aesString").value;
+
+            const key = await generateKey(password);
+            const iv = window.crypto.getRandomValues(new Uint8Array(12)); // 12 bytes IV for AES-GCM
+
+            const enc = new TextEncoder();
+            const encryptedData = await window.crypto.subtle.encrypt(
+                {
+                    name: "AES-GCM",
+                    iv: iv,
+                },
+                key,
+                enc.encode(text)
+            );
+
+            const encryptedHex = bufferToHex(encryptedData);
+            const ivHex = bufferToHex(iv);
+
+            const output = ivHex + encryptedHex;
+            document.getElementById("aesEncryptedOutput").value = output;
         }
 
-        // Show specified page
+        // Function to decrypt string using AES-GCM
+        async function decryptString() {
+            const password = document.getElementById("aesSaltDecrypt").value;
+            const input = document.getElementById("aesEncryptedInput").value;
+            const enc = new TextEncoder();
+            const key = await generateKey(password);
+
+            const iv = hexToBuffer(input.substring(0, 24)); // First 12 bytes are IV
+            const encryptedData = hexToBuffer(input.substring(24)); // The rest is the encrypted data
+
+            const decryptedData = await window.crypto.subtle.decrypt(
+                {
+                    name: "AES-GCM",
+                    iv: iv,
+                },
+                key,
+                encryptedData
+            );
+
+            const dec = new TextDecoder();
+            const decryptedText = dec.decode(decryptedData);
+            document.getElementById("aesDecryptedOutput").value = decryptedText;
+        }
+
+        // Helper function to convert buffer to hex string
+        function bufferToHex(buffer) {
+            const byteArray = new Uint8Array(buffer);
+            return Array.from(byteArray).map(b => b.toString(16).padStart(2, '0')).join('');
+        }
+
+        // Helper function to convert hex string to buffer
+        function hexToBuffer(hex) {
+            const buffer = new ArrayBuffer(hex.length / 2);
+            const view = new DataView(buffer);
+            for (let i = 0; i < hex.length; i += 2) {
+                view.setUint8(i / 2, parseInt(hex.substr(i, 2), 16));
+            }
+            return buffer;
+        }
+
+        // File Encryption/Decryption
+        async function encryptFile() {
+            const password = document.getElementById("fileSalt").value;
+            const fileInput = document.getElementById("fileInput").files[0];
+
+            const reader = new FileReader();
+            reader.onload = async function(event) {
+                const key = await generateKey(password);
+                const iv = window.crypto.getRandomValues(new Uint8Array(12));
+
+                const encryptedData = await window.crypto.subtle.encrypt(
+                    { name: "AES-GCM", iv: iv },
+                    key,
+                    new Uint8Array(event.target.result)
+                );
+
+                const encryptedHex = bufferToHex(encryptedData);
+                const ivHex = bufferToHex(iv);
+                const output = ivHex + encryptedHex;
+                document.getElementById("fileEncryptedOutput").value = output;
+            };
+
+            reader.readAsArrayBuffer(fileInput);
+        }
+
+        async function decryptFile() {
+            const password = document.getElementById("decryptSalt").value;
+            const encryptedInput = document.getElementById("fileEncryptedInput").value;
+
+            const key = await generateKey(password);
+
+            const iv = hexToBuffer(encryptedInput.substring(0, 24));
+            const encryptedData = hexToBuffer(encryptedInput.substring(24));
+
+            const decryptedData = await window.crypto.subtle.decrypt(
+                { name: "AES-GCM", iv: iv },
+                key,
+                encryptedData
+            );
+
+            const blob = new Blob([decryptedData], { type: "application/octet-stream" });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = 'decryptedFile';
+            link.click();
+        }
+
+        // Page navigation
         function showPage(pageId) {
             const pages = document.querySelectorAll('.page');
             pages.forEach(page => page.style.display = 'none');
             document.getElementById(pageId).style.display = 'block';
         }
 
-        // String Encrypt/Decrypt
-        function encryptText() {
-            const salt = document.getElementById("secret").value;
-            const text = document.getElementById("encryptString").value;
-            const myCipher = cipher(salt);
-            const encryptedText = myCipher(text);
-            document.getElementById("encryptedOutput").value = encryptedText;
-        }
-
-        function decryptText() {
-            const salt = document.getElementById("decryptSecret").value;
-            const encryptedText = document.getElementById("encryptedInput").value;
-            const myDecipher = decipher(salt);
-            const decryptedText = myDecipher(encryptedText);
-            document.getElementById("decryptedOutput").value = decryptedText;
-        }
-
-        // File Encrypt/Decrypt
-        function encryptFile() {
-            const salt = document.getElementById("fileSalt").value;
-            const fileInput = document.getElementById("fileInput").files[0];
-
-            const reader = new FileReader();
-            reader.onload = function(event) {
-                const base64Data = btoa(event.target.result);
-                const myCipher = cipher(salt);
-                const encryptedFile = myCipher(base64Data);
-                document.getElementById("encryptedFileOutput").value = encryptedFile;
-            }
-
-            reader.readAsBinaryString(fileInput);
-        }
-
-        function decryptFile() {
-            const salt = document.getElementById("decryptSalt").value;
-            const encryptedData = document.getElementById("encryptedFileInput").value;
-
-            const myDecipher = decipher(salt);
-            const decryptedBase64 = myDecipher(encryptedData);
-            const binaryData = atob(decryptedBase64);
-
-            const blob = new Blob([new Uint8Array(binaryData.split('').map(c => c.charCodeAt(0)))], {type: 'application/octet-stream'});
-            const link = document.createElement('a');
-            link.href = URL.createObjectURL(blob);
-            link.download = "decryptedFile";
-            link.click();
-        }
-        
         // Show the default page
         showPage('stringPage');
     </script>
