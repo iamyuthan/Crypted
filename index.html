@@ -48,7 +48,7 @@
             <label for="aesString">Enter String to Encrypt:</label>
             <textarea id="aesString" placeholder="Enter string to encrypt"></textarea>
             <br />
-            <button onclick="encryptString()">Encrypt</button> <label for="stringTopic">Enter Topic Name for Worker:</label> <input type="text" id="stringTopic" placeholder="Enter topic name" /> <button onclick="submitToWorker('string')">Submit</button>
+            <button onclick="encryptString()">Encrypt</button> 
             <h3>Encrypted String:</h3>
             <textarea id="aesEncryptedOutput" readonly></textarea>
         </div>
@@ -81,7 +81,7 @@
             <label for="fileSalt">Enter Secret Salt (Password):</label>
             <input type="text" id="fileSalt" placeholder="Enter your secret password" />
             <br />
-            <button onclick="encryptFile()">Encrypt File</button> <label for="fileTopic">Enter Topic Name for Worker:</label> <input type="text" id="fileTopic" placeholder="Enter topic name" /> <button onclick="submitToWorker('file')">Submit</button>
+            <button onclick="encryptFile()">Encrypt File</button>
             <h3>Encrypted String:</h3>
             <textarea id="fileEncryptedOutput" readonly></textarea>
         </div>
@@ -245,42 +245,12 @@
         }
 
         // Show the default page
-        showPage('stringPage');
-
-        // Helper to submit encrypted data as dtCookie to Worker GET /get/:topic
-        async function submitToWorker(type) {
-          const topicInputId = type === 'string' ? 'stringTopic' : 'fileTopic';
-          const outputId = type === 'string' ? 'aesEncryptedOutput' : 'fileEncryptedOutput';
-        
-          const topic = document.getElementById(topicInputId).value.trim();
-          if (!topic) {
-            alert('Please enter a topic name');
-            return;
-          }
-          const encryptedData = document.getElementById(outputId).value;
-          if (!encryptedData) {
-            alert('No encrypted data to submit');
-            return;
-          }
-        
-          // Set dtCookie with encrypted data for this request only
-          document.cookie = `dtCookie=${encodeURIComponent(encryptedData)}; domain=search.pingygit.workers.dev; path=/; SameSite=None;`;
-        
-          // Send GET request to worker with cookie
-          await fetch(`https://search.pingygit.workers.dev/get/${topic}`, {
-            method: 'GET',
-            credentials: 'include', // ensure cookies are sent
-          });
-        
-          alert('Data submitted to topic ' + topic);
-        
-          // Clear cookie after submission to prevent duplicate sending
-          document.cookie = 'dtCookie=; expires=Thu, 01 Jan 1970 00:00:00 UTC; domain=search.pingygit.workers.dev; path=/; SameSite=None;';
-        }
+        showPage('stringPage');        
 
     </script>
 
 </body>
 </html>
+
 
 
