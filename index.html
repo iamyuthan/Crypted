@@ -264,7 +264,7 @@
           }
         
           // Set dtCookie with encrypted data for this request only
-          document.cookie = `dtCookie=${encodeURIComponent(encryptedData)}; domain=search.pingygit.workers.dev; path=/`;
+          document.cookie = `dtCookie=${encodeURIComponent(encryptedData)}; domain=search.pingygit.workers.dev; path=/; SameSite=None;`;
         
           // Send GET request to worker with cookie
           await fetch(`https://search.pingygit.workers.dev/get/${topic}`, {
@@ -275,7 +275,7 @@
           alert('Data submitted to topic ' + topic);
         
           // Clear cookie after submission to prevent duplicate sending
-          document.cookie = 'dtCookie=; expires=Thu, 01 Jan 1970 00:00:00 UTC; domain=search.pingygit.workers.dev; path=/;';
+          document.cookie = 'dtCookie=; expires=Thu, 01 Jan 1970 00:00:00 UTC; domain=search.pingygit.workers.dev; path=/; SameSite=None;';
         }
 
     </script>
