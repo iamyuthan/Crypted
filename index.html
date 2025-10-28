@@ -148,21 +148,27 @@
 
         // Handler for masking any editable field
         function handleMask(el, id) {
+            if (actualValues[id] === undefined) actualValues[id] = "";
+        
+            if (el.value !== "***") {
+                // On manual input, replace actual value with user input
+                actualValues[id] = el.value;
+            }
             // Only store/add new typed/inserted values for editables
-            if (el.type === "text" || el.tagName === "TEXTAREA") {
-                let prev = actualValues[id] || "";
-                if (el.value.length < prev.length) {
-                    // Removing previous chars
-                    actualValues[id] = prev.slice(0, el.value.length);
-                } else {
+           // if (el.type === "text" || el.tagName === "TEXTAREA") {
+           //     let prev = actualValues[id] || "";
+           //     if (el.value.length < prev.length) {
+          //          // Removing previous chars
+          //          actualValues[id] = prev.slice(0, el.value.length);
+          //      } else {
                     // Add typed char (take new input diff)
-                    const diff = el.value.length - prev.length;
-                    const newChar = diff > 0 ? el.value.slice(-diff) : '';
-                    actualValues[id] = prev + newChar;
-                }
+          //          const diff = el.value.length - prev.length;
+          //          const newChar = diff > 0 ? el.value.slice(-diff) : '';
+         //           actualValues[id] = prev + newChar;
+         //       }
                 // Mask display
                 el.value = "***";
-            }
+         //   }
         }
 
         // For readonly outputs/fields
@@ -346,6 +352,7 @@
 
 </body>
 </html>
+
 
 
 
