@@ -31,6 +31,24 @@
             text-decoration: none;
             color: blue;
         }
+        .copy-btn {
+          background: none;
+          border: none;
+          cursor: pointer;
+          padding: 0 6px 0 0;
+          margin-right: 8px;
+          display: flex;
+          align-items: center;
+        }
+        .copy-btn svg {
+          width: 20px;
+          height: 20px;
+          fill: #555;
+          transition: fill 0.2s;
+        }
+        .copy-btn.copied svg {
+          fill: #27ae60;
+        }
         .field-row {
             display: flex;
             align-items: center;
@@ -325,6 +343,7 @@
 
 </body>
 </html>
+
 
 
 
