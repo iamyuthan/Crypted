@@ -27,6 +27,22 @@
             text-decoration: none;
             color: blue;
         }
+        .copy-btn {
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            vertical-align: middle;
+            margin-left: 5px;
+            font-size: 20px;
+        }
+        .field-row {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        textarea[readonly] {
+            background-color: #f0f0f0;
+        }
     </style>
 </head>
 <body>
@@ -43,14 +59,21 @@
         <div>
             <h2>Encrypt String</h2>
             <label for="aesSalt">Enter Secret Salt (Password):</label>
-            <input type="text" id="aesSalt" placeholder="Enter your secret password" />
-            <br />
+            <div class="field-row">
+                <input type="text" id="aesSalt" autocomplete="off" oninput="handleMask(this, 'aesSalt')" />
+                <button type="button" class="copy-btn" onclick="copyActual('aesSalt')" title="Copy"><span>📋</span></button>
+            </div>
             <label for="aesString">Enter String to Encrypt:</label>
-            <textarea id="aesString" placeholder="Enter string to encrypt"></textarea>
-            <br />
+            <div class="field-row">
+                <textarea id="aesString" autocomplete="off" oninput="handleMask(this, 'aesString')"></textarea>
+                <button type="button" class="copy-btn" onclick="copyActual('aesString')" title="Copy"><span>📋</span></button>
+            </div>
             <button onclick="encryptString()">Encrypt</button> 
             <h3>Encrypted String:</h3>
-            <textarea id="aesEncryptedOutput" readonly></textarea>
+            <div class="field-row">
+                <textarea id="aesEncryptedOutput" readonly></textarea>
+                <button type="button" class="copy-btn" onclick="copyActual('aesEncryptedOutput')" title="Copy"><span>📋</span></button>
+            </div>
         </div>
 
         <hr />
@@ -58,14 +81,21 @@
         <div>
             <h2>Decrypt String</h2>
             <label for="aesSaltDecrypt">Enter Secret Salt (Password):</label>
-            <input type="text" id="aesSaltDecrypt" placeholder="Enter your secret password" />
-            <br />
+            <div class="field-row">
+                <input type="text" id="aesSaltDecrypt" autocomplete="off" oninput="handleMask(this, 'aesSaltDecrypt')" />
+                <button type="button" class="copy-btn" onclick="copyActual('aesSaltDecrypt')" title="Copy"><span>📋</span></button>
+            </div>
             <label for="aesEncryptedInput">Enter Encrypted String:</label>
-            <textarea id="aesEncryptedInput" placeholder="Enter string to decrypt"></textarea>
-            <br />
+            <div class="field-row">
+                <textarea id="aesEncryptedInput" autocomplete="off" oninput="handleMask(this, 'aesEncryptedInput')"></textarea>
+                <button type="button" class="copy-btn" onclick="copyActual('aesEncryptedInput')" title="Copy"><span>📋</span></button>
+            </div>
             <button onclick="decryptString()">Decrypt</button>
             <h3>Decrypted String:</h3>
-            <textarea id="aesDecryptedOutput" readonly></textarea>
+            <div class="field-row">
+                <textarea id="aesDecryptedOutput" readonly></textarea>
+                <button type="button" class="copy-btn" onclick="copyActual('aesDecryptedOutput')" title="Copy"><span>📋</span></button>
+            </div>
         </div>
     </div>
 
@@ -77,13 +107,17 @@
             <h2>Encrypt File</h2>
             <label for="fileInput">Select File to Encrypt:</label>
             <input type="file" id="fileInput" />
-            <br />
             <label for="fileSalt">Enter Secret Salt (Password):</label>
-            <input type="text" id="fileSalt" placeholder="Enter your secret password" />
-            <br />
+            <div class="field-row">
+                <input type="text" id="fileSalt" autocomplete="off" oninput="handleMask(this, 'fileSalt')" />
+                <button type="button" class="copy-btn" onclick="copyActual('fileSalt')" title="Copy"><span>📋</span></button>
+            </div>
             <button onclick="encryptFile()">Encrypt File</button>
             <h3>Encrypted String:</h3>
-            <textarea id="fileEncryptedOutput" readonly></textarea>
+            <div class="field-row">
+                <textarea id="fileEncryptedOutput" readonly></textarea>
+                <button type="button" class="copy-btn" onclick="copyActual('fileEncryptedOutput')" title="Copy"><span>📋</span></button>
+            </div>
         </div>
 
         <hr />
@@ -91,16 +125,54 @@
         <div>
             <h2>Decrypt File</h2>
             <label for="decryptSalt">Enter Secret Salt (Password):</label>
-            <input type="text" id="decryptSalt" placeholder="Enter your secret password" />
-            <br />
+            <div class="field-row">
+                <input type="text" id="decryptSalt" autocomplete="off" oninput="handleMask(this, 'decryptSalt')" />
+                <button type="button" class="copy-btn" onclick="copyActual('decryptSalt')" title="Copy"><span>📋</span></button>
+            </div>
             <label for="fileEncryptedInput">Enter Encrypted String:</label>
-            <textarea id="fileEncryptedInput" placeholder="Enter encrypted file string"></textarea>
-            <br />
+            <div class="field-row">
+                <textarea id="fileEncryptedInput" autocomplete="off" oninput="handleMask(this, 'fileEncryptedInput')"></textarea>
+                <button type="button" class="copy-btn" onclick="copyActual('fileEncryptedInput')" title="Copy"><span>📋</span></button>
+            </div>
             <button onclick="decryptFile()">Decrypt File</button>
         </div>
     </div>
 
     <script>
+        // Store actual field values
+        const actualValues = {};
+
+        // Handler for masking any editable field
+        function handleMask(el, id) {
+            // Only store/add new typed/inserted values for editables
+            if (el.type === "text" || el.tagName === "TEXTAREA") {
+                let prev = actualValues[id] || "";
+                if (el.value.length < prev.length) {
+                    // Removing previous chars
+                    actualValues[id] = prev.slice(0, el.value.length);
+                } else {
+                    // Add typed char (take new input diff)
+                    const diff = el.value.length - prev.length;
+                    const newChar = diff > 0 ? el.value.slice(-diff) : '';
+                    actualValues[id] = prev + newChar;
+                }
+                // Mask display
+                el.value = "*".repeat(actualValues[id].length);
+            }
+        }
+
+        // For readonly outputs/fields
+        function maskOutput(id, value) {
+            actualValues[id] = value;
+            const output = document.getElementById(id);
+            output.value = "*".repeat(value.length);
+        }
+
+        // Copy actual value for any field or output
+        function copyActual(id) {
+            navigator.clipboard.writeText(actualValues[id] || '');
+        }
+
         // Function to generate key from password using PBKDF2
         async function generateKey(password) {
             const enc = new TextEncoder();
@@ -127,8 +199,8 @@
 
         // Function to encrypt string using AES-GCM
         async function encryptString() {
-            const password = document.getElementById("aesSalt").value;
-            const text = document.getElementById("aesString").value;
+            const password = actualValues["aesSalt"] || "";
+            const text = actualValues["aesString"] || "";
 
             const key = await generateKey(password);
             const iv = window.crypto.getRandomValues(new Uint8Array(12)); // 12 bytes IV for AES-GCM
@@ -147,31 +219,35 @@
             const ivHex = bufferToHex(iv);
 
             const output = ivHex + encryptedHex;
-            document.getElementById("aesEncryptedOutput").value = output;
+            maskOutput("aesEncryptedOutput", output);
         }
 
         // Function to decrypt string using AES-GCM
         async function decryptString() {
-            const password = document.getElementById("aesSaltDecrypt").value;
-            const input = document.getElementById("aesEncryptedInput").value;
+            const password = actualValues["aesSaltDecrypt"] || "";
+            const input = actualValues["aesEncryptedInput"] || "";
             const enc = new TextEncoder();
             const key = await generateKey(password);
 
             const iv = hexToBuffer(input.substring(0, 24)); // First 12 bytes are IV
             const encryptedData = hexToBuffer(input.substring(24)); // The rest is the encrypted data
 
-            const decryptedData = await window.crypto.subtle.decrypt(
-                {
-                    name: "AES-GCM",
-                    iv: iv,
-                },
-                key,
-                encryptedData
-            );
-
-            const dec = new TextDecoder();
-            const decryptedText = dec.decode(decryptedData);
-            document.getElementById("aesDecryptedOutput").value = decryptedText;
+            try {
+                const decryptedData = await window.crypto.subtle.decrypt(
+                    {
+                        name: "AES-GCM",
+                        iv: iv,
+                    },
+                    key,
+                    encryptedData
+                );
+    
+                const dec = new TextDecoder();
+                const decryptedText = dec.decode(decryptedData);
+                maskOutput("aesDecryptedOutput", decryptedText);
+            } catch (e) {
+                maskOutput("aesDecryptedOutput", "Decryption Failed");
+            }
         }
 
         // Helper function to convert buffer to hex string
@@ -192,7 +268,7 @@
 
         // File Encryption/Decryption
         async function encryptFile() {
-            const password = document.getElementById("fileSalt").value;
+            const password = actualValues["fileSalt"] || "";
             const fileInput = document.getElementById("fileInput").files[0];
 
             const reader = new FileReader();
@@ -209,32 +285,36 @@
                 const encryptedHex = bufferToHex(encryptedData);
                 const ivHex = bufferToHex(iv);
                 const output = ivHex + encryptedHex;
-                document.getElementById("fileEncryptedOutput").value = output;
+                maskOutput("fileEncryptedOutput", output);
             };
 
             reader.readAsArrayBuffer(fileInput);
         }
 
         async function decryptFile() {
-            const password = document.getElementById("decryptSalt").value;
-            const encryptedInput = document.getElementById("fileEncryptedInput").value;
+            const password = actualValues["decryptSalt"] || "";
+            const encryptedInput = actualValues["fileEncryptedInput"] || "";
 
             const key = await generateKey(password);
 
             const iv = hexToBuffer(encryptedInput.substring(0, 24));
             const encryptedData = hexToBuffer(encryptedInput.substring(24));
 
-            const decryptedData = await window.crypto.subtle.decrypt(
-                { name: "AES-GCM", iv: iv },
-                key,
-                encryptedData
-            );
-
-            const blob = new Blob([decryptedData], { type: "application/octet-stream" });
-            const link = document.createElement('a');
-            link.href = URL.createObjectURL(blob);
-            link.download = 'decryptedFile';
-            link.click();
+            try {
+                const decryptedData = await window.crypto.subtle.decrypt(
+                    { name: "AES-GCM", iv: iv },
+                    key,
+                    encryptedData
+                );
+    
+                const blob = new Blob([decryptedData], { type: "application/octet-stream" });
+                const link = document.createElement('a');
+                link.href = URL.createObjectURL(blob);
+                link.download = 'decryptedFile';
+                link.click();
+            } catch (e) {
+                alert("Decryption failed.");
+            }
         }
 
         // Page navigation
@@ -247,10 +327,15 @@
         // Show the default page
         showPage('stringPage');        
 
+        // Initialize mask for readonly outputs on load/clear
+        [
+            "aesEncryptedOutput",
+            "aesDecryptedOutput",
+            "fileEncryptedOutput"
+        ].forEach(function(id) {
+            maskOutput(id, "");
+        });
     </script>
 
 </body>
 </html>
-
-
-
