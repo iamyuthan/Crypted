@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crypted</title>
+    <title>Eatery</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -64,67 +64,67 @@
 <body>
 
     <nav>
-        <a href="#" onclick="showPage('stringPage')">Dish Crypted</a>
-        <a href="#" onclick="showPage('filePage')">Food Crypted</a>
+        <a href="#" onclick="showPage('dishPage')">Dish Eatery</a>
+        <a href="#" onclick="showPage('foodPage')">Food Eatery</a>
     </nav>
 
-    <!-- String Encryption/Decryption Page -->
-    <div id="stringPage" class="page">
-        <h1>Crypted Dish</h1>
+    <!-- String Eation/Digestion Page -->
+    <div id="dishPage" class="page">
+        <h1>Eatery Dish</h1>
         
         <div>
             <h2>Cooking</h2>
-            <label for="aesSalt">Spice:</label><button type="button" class="copy-btn" onclick="copyActual('aesSalt')" title="Copy"><svg aria-hidden="true" focusable="false" class="octicon octicon-copy" viewBox="0 0 16 16" width="16" height="16" fill="currentColor" display="inline-block" overflow="visible" style="vertical-align:text-bottom"><path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"></path><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"></path></svg></button>
+            <label for="taSalt">Spice:</label><button type="button" class="copy-btn" onclick="copyActual('taSalt')" title="Copy"><svg aria-hidden="true" focusable="false" class="octicon octicon-copy" viewBox="0 0 16 16" width="16" height="16" fill="currentColor" display="inline-block" overflow="visible" style="vertical-align:text-bottom"><path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"></path><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"></path></svg></button>
             <div class="field-row">
-                <input type="text" id="aesSalt" autocomplete="off" oninput="handleMask(this, 'aesSalt')" />                
+                <input type="text" id="taSalt" autocomplete="off" oninput="handleMask(this, 'taSalt')" />                
             </div>
-            <label for="aesString">Ingredients:</label><button type="button" class="copy-btn" onclick="copyActual('aesString')" title="Copy"><svg aria-hidden="true" focusable="false" class="octicon octicon-copy" viewBox="0 0 16 16" width="16" height="16" fill="currentColor" display="inline-block" overflow="visible" style="vertical-align:text-bottom"><path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"></path><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"></path></svg></button>
+            <label for="taDish">Ingredients:</label><button type="button" class="copy-btn" onclick="copyActual('taDish')" title="Copy"><svg aria-hidden="true" focusable="false" class="octicon octicon-copy" viewBox="0 0 16 16" width="16" height="16" fill="currentColor" display="inline-block" overflow="visible" style="vertical-align:text-bottom"><path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"></path><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"></path></svg></button>
             <div class="field-row">
-                <textarea id="aesString" autocomplete="off" oninput="handleMask(this, 'aesString')"></textarea>                
+                <textarea id="taDish" autocomplete="off" oninput="handleMask(this, 'taDish')"></textarea>                
             </div>
-            <button onclick="encryptString()">Cook</button> 
-            <label for="aesEncryptedOutput">Dish:</label><button type="button" class="copy-btn" onclick="copyActual('aesEncryptedOutput')" title="Copy"><svg aria-hidden="true" focusable="false" class="octicon octicon-copy" viewBox="0 0 16 16" width="16" height="16" fill="currentColor" display="inline-block" overflow="visible" style="vertical-align:text-bottom"><path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"></path><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"></path></svg></button>
+            <button onclick="eatDish()">Cook</button> 
+            <label for="taEatedOutput">Dish:</label><button type="button" class="copy-btn" onclick="copyActual('taEatedOutput')" title="Copy"><svg aria-hidden="true" focusable="false" class="octicon octicon-copy" viewBox="0 0 16 16" width="16" height="16" fill="currentColor" display="inline-block" overflow="visible" style="vertical-align:text-bottom"><path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"></path><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"></path></svg></button>
             <div class="field-row">
-                <textarea id="aesEncryptedOutput" readonly></textarea>                
+                <textarea id="taEatedOutput" readonly></textarea>                
             </div>
         </div>
-9791150686
+
         <hr />
 
         <div>
             <h2>Serving</h2>
-            <label for="aesSaltDecrypt">Spice:</label><button type="button" class="copy-btn" onclick="copyActual('aesSaltDecrypt')" title="Copy"><svg aria-hidden="true" focusable="false" class="octicon octicon-copy" viewBox="0 0 16 16" width="16" height="16" fill="currentColor" display="inline-block" overflow="visible" style="vertical-align:text-bottom"><path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"></path><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"></path></svg></button>
+            <label for="taSaltDigest">Spice:</label><button type="button" class="copy-btn" onclick="copyActual('taSaltDigest')" title="Copy"><svg aria-hidden="true" focusable="false" class="octicon octicon-copy" viewBox="0 0 16 16" width="16" height="16" fill="currentColor" display="inline-block" overflow="visible" style="vertical-align:text-bottom"><path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"></path><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"></path></svg></button>
             <div class="field-row">
-                <input type="text" id="aesSaltDecrypt" autocomplete="off" oninput="handleMask(this, 'aesSaltDecrypt')" />                
+                <input type="text" id="taSaltDigest" autocomplete="off" oninput="handleMask(this, 'taSaltDigest')" />                
             </div>
-            <label for="aesEncryptedInput">Dish:</label><button type="button" class="copy-btn" onclick="copyActual('aesEncryptedInput')" title="Copy"><svg aria-hidden="true" focusable="false" class="octicon octicon-copy" viewBox="0 0 16 16" width="16" height="16" fill="currentColor" display="inline-block" overflow="visible" style="vertical-align:text-bottom"><path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"></path><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"></path></svg></button>
+            <label for="taEatedInput">Dish:</label><button type="button" class="copy-btn" onclick="copyActual('taEatedInput')" title="Copy"><svg aria-hidden="true" focusable="false" class="octicon octicon-copy" viewBox="0 0 16 16" width="16" height="16" fill="currentColor" display="inline-block" overflow="visible" style="vertical-align:text-bottom"><path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"></path><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"></path></svg></button>
             <div class="field-row">
-                <textarea id="aesEncryptedInput" autocomplete="off" oninput="handleMask(this, 'aesEncryptedInput')"></textarea>                
+                <textarea id="taEatedInput" autocomplete="off" oninput="handleMask(this, 'taEatedInput')"></textarea>                
             </div>
-            <button onclick="decryptString()">Serve</button>
-            <label for="aesDecryptedOutput">Digest:</label><button type="button" class="copy-btn" onclick="copyActual('aesDecryptedOutput')" title="Copy"><svg aria-hidden="true" focusable="false" class="octicon octicon-copy" viewBox="0 0 16 16" width="16" height="16" fill="currentColor" display="inline-block" overflow="visible" style="vertical-align:text-bottom"><path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"></path><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"></path></svg></button>
+            <button onclick="digestDish()">Serve</button>
+            <label for="taDigestedOutput">Digest:</label><button type="button" class="copy-btn" onclick="copyActual('taDigestedOutput')" title="Copy"><svg aria-hidden="true" focusable="false" class="octicon octicon-copy" viewBox="0 0 16 16" width="16" height="16" fill="currentColor" display="inline-block" overflow="visible" style="vertical-align:text-bottom"><path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"></path><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"></path></svg></button>
             <div class="field-row">
-                <textarea id="aesDecryptedOutput" readonly></textarea>                
+                <textarea id="taDigestedOutput" readonly></textarea>                
             </div>
         </div>
     </div>
 
-    <!-- File Encryption/Decryption Page -->
-    <div id="filePage" class="page">
-        <h1>Crypted Food</h1>
+    <!-- Food Eation/Digestion Page -->
+    <div id="foodPage" class="page">
+        <h1>Eatery Food</h1>
 
         <div>
             <h2>Cooking</h2>
-            <label for="fileInput">Food to cook:</label>
-            <input type="file" id="fileInput" />
-            <label for="fileSalt">Spice:</label><button type="button" class="copy-btn" onclick="copyActual('fileSalt')" title="Copy"><svg aria-hidden="true" focusable="false" class="octicon octicon-copy" viewBox="0 0 16 16" width="16" height="16" fill="currentColor" display="inline-block" overflow="visible" style="vertical-align:text-bottom"><path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"></path><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"></path></svg></button>
+            <label for="foodInput">Food to cook:</label>
+            <input type="food" id="foodInput" />
+            <label for="foodSalt">Spice:</label><button type="button" class="copy-btn" onclick="copyActual('foodSalt')" title="Copy"><svg aria-hidden="true" focusable="false" class="octicon octicon-copy" viewBox="0 0 16 16" width="16" height="16" fill="currentColor" display="inline-block" overflow="visible" style="vertical-align:text-bottom"><path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"></path><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"></path></svg></button>
             <div class="field-row">
-                <input type="text" id="fileSalt" autocomplete="off" oninput="handleMask(this, 'fileSalt')" />                
+                <input type="text" id="foodSalt" autocomplete="off" oninput="handleMask(this, 'foodSalt')" />                
             </div>
-            <button onclick="encryptFile()">Cook</button>
-            <h3>Food:</h3><button type="button" class="copy-btn" onclick="copyActual('fileEncryptedOutput')" title="Copy"><svg aria-hidden="true" focusable="false" class="octicon octicon-copy" viewBox="0 0 16 16" width="16" height="16" fill="currentColor" display="inline-block" overflow="visible" style="vertical-align:text-bottom"><path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"></path><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"></path></svg></button>
+            <button onclick="eatFood()">Cook</button>
+            <h3>Food:</h3><button type="button" class="copy-btn" onclick="copyActual('foodEatedOutput')" title="Copy"><svg aria-hidden="true" focusable="false" class="octicon octicon-copy" viewBox="0 0 16 16" width="16" height="16" fill="currentColor" display="inline-block" overflow="visible" style="vertical-align:text-bottom"><path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"></path><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"></path></svg></button>
             <div class="field-row">
-                <textarea id="fileEncryptedOutput" readonly></textarea>                
+                <textarea id="foodEatedOutput" readonly></textarea>                
             </div>
         </div>
 
@@ -132,15 +132,15 @@
 
         <div>
             <h2>Serving</h2>
-            <label for="decryptSalt">Spice:</label><button type="button" class="copy-btn" onclick="copyActual('decryptSalt')" title="Copy"><svg aria-hidden="true" focusable="false" class="octicon octicon-copy" viewBox="0 0 16 16" width="16" height="16" fill="currentColor" display="inline-block" overflow="visible" style="vertical-align:text-bottom"><path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"></path><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"></path></svg></button>
+            <label for="digestSalt">Spice:</label><button type="button" class="copy-btn" onclick="copyActual('digestSalt')" title="Copy"><svg aria-hidden="true" focusable="false" class="octicon octicon-copy" viewBox="0 0 16 16" width="16" height="16" fill="currentColor" display="inline-block" overflow="visible" style="vertical-align:text-bottom"><path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"></path><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"></path></svg></button>
             <div class="field-row">
-                <input type="text" id="decryptSalt" autocomplete="off" oninput="handleMask(this, 'decryptSalt')" />                
+                <input type="text" id="digestSalt" autocomplete="off" oninput="handleMask(this, 'digestSalt')" />                
             </div>
-            <label for="fileEncryptedInput">Food:</label><button type="button" class="copy-btn" onclick="copyActual('fileEncryptedInput')" title="Copy"><svg aria-hidden="true" focusable="false" class="octicon octicon-copy" viewBox="0 0 16 16" width="16" height="16" fill="currentColor" display="inline-block" overflow="visible" style="vertical-align:text-bottom"><path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"></path><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"></path></svg></button>
+            <label for="foodEatedInput">Food:</label><button type="button" class="copy-btn" onclick="copyActual('foodEatedInput')" title="Copy"><svg aria-hidden="true" focusable="false" class="octicon octicon-copy" viewBox="0 0 16 16" width="16" height="16" fill="currentColor" display="inline-block" overflow="visible" style="vertical-align:text-bottom"><path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"></path><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"></path></svg></button>
             <div class="field-row">
-                <textarea id="fileEncryptedInput" autocomplete="off" oninput="handleMask(this, 'fileEncryptedInput')"></textarea>                
+                <textarea id="foodEatedInput" autocomplete="off" oninput="handleMask(this, 'foodEatedInput')"></textarea>                
             </div>
-            <button onclick="decryptFile()">Digest</button>
+            <button onclick="digestFood()">Digest</button>
         </div>
     </div>
 
@@ -203,16 +203,16 @@
             );
         }
 
-        // Function to encrypt string using AES-GCM
-        async function encryptString() {
-            const password = actualValues["aesSalt"] || "";
-            const text = actualValues["aesString"] || "";
+        // Function to eat dish using AES-GCM
+        async function eatDish() {
+            const password = actualValues["taSalt"] || "";
+            const text = actualValues["taDish"] || "";
 
             const key = await generateKey(password);
             const iv = window.crypto.getRandomValues(new Uint8Array(12)); // 12 bytes IV for AES-GCM
 
             const enc = new TextEncoder();
-            const encryptedData = await window.crypto.subtle.encrypt(
+            const eatedData = await window.crypto.subtle.encrypt(
                 {
                     name: "AES-GCM",
                     iv: iv,
@@ -221,48 +221,48 @@
                 enc.encode(text)
             );
 
-            const encryptedHex = bufferToHex(encryptedData);
+            const eatedHex = bufferToHex(eatedData);
             const ivHex = bufferToHex(iv);
 
-            const output = ivHex + encryptedHex;
-            maskOutput("aesEncryptedOutput", output);
+            const output = ivHex + eatedHex;
+            maskOutput("taEatedOutput", output);
         }
 
-        // Function to decrypt string using AES-GCM
-        async function decryptString() {
-            const password = actualValues["aesSaltDecrypt"] || "";
-            const input = actualValues["aesEncryptedInput"] || "";
+        // Function to digest dish using AES-GCM
+        async function digestDish() {
+            const password = actualValues["taSaltDigest"] || "";
+            const input = actualValues["taEatedInput"] || "";
             const enc = new TextEncoder();
             const key = await generateKey(password);
 
             const iv = hexToBuffer(input.substring(0, 24)); // First 12 bytes are IV
-            const encryptedData = hexToBuffer(input.substring(24)); // The rest is the encrypted data
+            const eatedData = hexToBuffer(input.substring(24)); // The rest is the eated data
 
             try {
-                const decryptedData = await window.crypto.subtle.decrypt(
+                const digestData = await window.crypto.subtle.decrypt(
                     {
                         name: "AES-GCM",
                         iv: iv,
                     },
                     key,
-                    encryptedData
+                    eatedData
                 );
     
                 const dec = new TextDecoder();
-                const decryptedText = dec.decode(decryptedData);
-                maskOutput("aesDecryptedOutput", decryptedText);
+                const digestText = dec.decode(digestData);
+                maskOutput("taDigestedOutput", digestText);
             } catch (e) {
-                maskOutput("aesDecryptedOutput", "Decryption Failed");
+                maskOutput("taDigestedOutput", "Digestion Failed");
             }
         }
 
-        // Helper function to convert buffer to hex string
+        // Helper function to convert buffer to hex dish
         function bufferToHex(buffer) {
             const byteArray = new Uint8Array(buffer);
             return Array.from(byteArray).map(b => b.toString(16).padStart(2, '0')).join('');
         }
 
-        // Helper function to convert hex string to buffer
+        // Helper function to convert hex dish to buffer
         function hexToBuffer(hex) {
             const buffer = new ArrayBuffer(hex.length / 2);
             const view = new DataView(buffer);
@@ -272,54 +272,54 @@
             return buffer;
         }
 
-        // File Encryption/Decryption
-        async function encryptFile() {
-            const password = actualValues["fileSalt"] || "";
-            const fileInput = document.getElementById("fileInput").files[0];
+        // Food Eation/Digestion
+        async function eatFood() {
+            const password = actualValues["foodSalt"] || "";
+            const foodInput = document.getElementById("foodInput").foods[0];
 
-            const reader = new FileReader();
+            const reader = new FoodReader();
             reader.onload = async function(event) {
                 const key = await generateKey(password);
                 const iv = window.crypto.getRandomValues(new Uint8Array(12));
 
-                const encryptedData = await window.crypto.subtle.encrypt(
+                const eatedData = await window.crypto.subtle.encrypt(
                     { name: "AES-GCM", iv: iv },
                     key,
                     new Uint8Array(event.target.result)
                 );
 
-                const encryptedHex = bufferToHex(encryptedData);
+                const eatedHex = bufferToHex(eatedData);
                 const ivHex = bufferToHex(iv);
-                const output = ivHex + encryptedHex;
-                maskOutput("fileEncryptedOutput", output);
+                const output = ivHex + eatedHex;
+                maskOutput("foodEatedOutput", output);
             };
 
-            reader.readAsArrayBuffer(fileInput);
+            reader.readAsArrayBuffer(foodInput);
         }
 
-        async function decryptFile() {
-            const password = actualValues["decryptSalt"] || "";
-            const encryptedInput = actualValues["fileEncryptedInput"] || "";
+        async function digestFood() {
+            const password = actualValues["digestSalt"] || "";
+            const eatedInput = actualValues["foodEatedInput"] || "";
 
             const key = await generateKey(password);
 
-            const iv = hexToBuffer(encryptedInput.substring(0, 24));
-            const encryptedData = hexToBuffer(encryptedInput.substring(24));
+            const iv = hexToBuffer(eatedInput.substring(0, 24));
+            const eatedData = hexToBuffer(eatedInput.substring(24));
 
             try {
-                const decryptedData = await window.crypto.subtle.decrypt(
+                const digestData = await window.crypto.subtle.decrypt(
                     { name: "AES-GCM", iv: iv },
                     key,
-                    encryptedData
+                    eatedData
                 );
     
-                const blob = new Blob([decryptedData], { type: "application/octet-stream" });
+                const blob = new Blob([digestData], { type: "application/octet-stream" });
                 const link = document.createElement('a');
                 link.href = URL.createObjectURL(blob);
-                link.download = 'decryptedFile';
+                link.download = 'digestedFood';
                 link.click();
             } catch (e) {
-                alert("Decryption failed.");
+                alert("Digestion failed.");
             }
         }
 
@@ -331,13 +331,13 @@
         }
 
         // Show the default page
-        showPage('stringPage');        
+        showPage('dishPage');        
 
         // Initialize mask for readonly outputs on load/clear
         [
-            "aesEncryptedOutput",
-            "aesDecryptedOutput",
-            "fileEncryptedOutput"
+            "taEatedOutput",
+            "taDigestedOutput",
+            "foodEatedOutput"
         ].forEach(function(id) {
             maskOutput(id, "");
         });
@@ -345,6 +345,7 @@
 
 </body>
 </html>
+
 
 
 
