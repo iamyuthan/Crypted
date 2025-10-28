@@ -148,34 +148,19 @@
 
         // Handler for masking any editable field
         function handleMask(el, id) {
-            if (actualValues[id] === undefined) actualValues[id] = "";
-        
-            if (el.value !== "***") {
-                // On manual input, replace actual value with user input
-                actualValues[id] = el.value;
-            }
-            // Only store/add new typed/inserted values for editables
-           // if (el.type === "text" || el.tagName === "TEXTAREA") {
-           //     let prev = actualValues[id] || "";
-           //     if (el.value.length < prev.length) {
-          //          // Removing previous chars
-          //          actualValues[id] = prev.slice(0, el.value.length);
-          //      } else {
-                    // Add typed char (take new input diff)
-          //          const diff = el.value.length - prev.length;
-          //          const newChar = diff > 0 ? el.value.slice(-diff) : '';
-         //           actualValues[id] = prev + newChar;
-         //       }
-                // Mask display
-                el.value = "***";
-         //   }
+        // Store real value
+        actualValues[id] = el.value.length > 0 && el.type !== "password" ? el.value : el.value;
+        // Replace display with stars only (except readonly outputs)
+        if (!el.readOnly) {
+            el.value = '*'.repeat(3);
         }
+    }
 
         // For readonly outputs/fields
         function maskOutput(id, value) {
             actualValues[id] = value;
             const output = document.getElementById(id);
-            output.value = "***";
+            output.value = '*'.repeat(3);
         }
 
         // Copy actual value for any field or output
@@ -352,6 +337,7 @@
 
 </body>
 </html>
+
 
 
 
