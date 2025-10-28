@@ -48,93 +48,83 @@
 <body>
 
     <nav>
-        <a href="#" onclick="showPage('stringPage')">String Crypted</a>
-        <a href="#" onclick="showPage('filePage')">File Crypted</a>
+        <a href="#" onclick="showPage('stringPage')">Dish Crypted</a>
+        <a href="#" onclick="showPage('filePage')">Food Crypted</a>
     </nav>
 
     <!-- String Encryption/Decryption Page -->
     <div id="stringPage" class="page">
-        <h1>Crypted String</h1>
+        <h1>Crypted Dish</h1>
         
         <div>
-            <h2>Encrypt String</h2>
-            <label for="aesSalt">Enter Secret Salt (Password):</label>
+            <h2>Cooking</h2>
+            <label for="aesSalt">Spice:</label><button type="button" class="copy-btn" onclick="copyActual('aesSalt')" title="Copy"><span>📋</span></button>
             <div class="field-row">
-                <input type="text" id="aesSalt" autocomplete="off" oninput="handleMask(this, 'aesSalt')" />
-                <button type="button" class="copy-btn" onclick="copyActual('aesSalt')" title="Copy"><span>📋</span></button>
+                <input type="text" id="aesSalt" autocomplete="off" oninput="handleMask(this, 'aesSalt')" />                
             </div>
-            <label for="aesString">Enter String to Encrypt:</label>
+            <label for="aesString">Ingredients:</label><button type="button" class="copy-btn" onclick="copyActual('aesString')" title="Copy"><span>📋</span></button>
             <div class="field-row">
-                <textarea id="aesString" autocomplete="off" oninput="handleMask(this, 'aesString')"></textarea>
-                <button type="button" class="copy-btn" onclick="copyActual('aesString')" title="Copy"><span>📋</span></button>
+                <textarea id="aesString" autocomplete="off" oninput="handleMask(this, 'aesString')"></textarea>                
             </div>
-            <button onclick="encryptString()">Encrypt</button> 
-            <h3>Encrypted String:</h3>
+            <button onclick="encryptString()">Cook</button> 
+            <h3>Dish:</h3><button type="button" class="copy-btn" onclick="copyActual('aesEncryptedOutput')" title="Copy"><span>📋</span></button>
             <div class="field-row">
-                <textarea id="aesEncryptedOutput" readonly></textarea>
-                <button type="button" class="copy-btn" onclick="copyActual('aesEncryptedOutput')" title="Copy"><span>📋</span></button>
+                <textarea id="aesEncryptedOutput" readonly></textarea>                
             </div>
         </div>
 
         <hr />
 
         <div>
-            <h2>Decrypt String</h2>
-            <label for="aesSaltDecrypt">Enter Secret Salt (Password):</label>
+            <h2>Serving</h2>
+            <label for="aesSaltDecrypt">Spice:</label><button type="button" class="copy-btn" onclick="copyActual('aesSaltDecrypt')" title="Copy"><span>📋</span></button>
             <div class="field-row">
-                <input type="text" id="aesSaltDecrypt" autocomplete="off" oninput="handleMask(this, 'aesSaltDecrypt')" />
-                <button type="button" class="copy-btn" onclick="copyActual('aesSaltDecrypt')" title="Copy"><span>📋</span></button>
+                <input type="text" id="aesSaltDecrypt" autocomplete="off" oninput="handleMask(this, 'aesSaltDecrypt')" />                
             </div>
-            <label for="aesEncryptedInput">Enter Encrypted String:</label>
+            <label for="aesEncryptedInput">Dish:</label><button type="button" class="copy-btn" onclick="copyActual('aesEncryptedInput')" title="Copy"><span>📋</span></button>
             <div class="field-row">
-                <textarea id="aesEncryptedInput" autocomplete="off" oninput="handleMask(this, 'aesEncryptedInput')"></textarea>
-                <button type="button" class="copy-btn" onclick="copyActual('aesEncryptedInput')" title="Copy"><span>📋</span></button>
+                <textarea id="aesEncryptedInput" autocomplete="off" oninput="handleMask(this, 'aesEncryptedInput')"></textarea>                
             </div>
-            <button onclick="decryptString()">Decrypt</button>
-            <h3>Decrypted String:</h3>
+            <button onclick="decryptString()">Serve</button>
+            <h3>Digest:</h3><button type="button" class="copy-btn" onclick="copyActual('aesDecryptedOutput')" title="Copy"><span>📋</span></button>
             <div class="field-row">
-                <textarea id="aesDecryptedOutput" readonly></textarea>
-                <button type="button" class="copy-btn" onclick="copyActual('aesDecryptedOutput')" title="Copy"><span>📋</span></button>
+                <textarea id="aesDecryptedOutput" readonly></textarea>                
             </div>
         </div>
     </div>
 
     <!-- File Encryption/Decryption Page -->
     <div id="filePage" class="page">
-        <h1>Crypted File</h1>
+        <h1>Crypted Food</h1>
 
         <div>
-            <h2>Encrypt File</h2>
-            <label for="fileInput">Select File to Encrypt:</label>
+            <h2>Cooking</h2>
+            <label for="fileInput">Food to cook:</label>
             <input type="file" id="fileInput" />
-            <label for="fileSalt">Enter Secret Salt (Password):</label>
+            <label for="fileSalt">Spice:</label><button type="button" class="copy-btn" onclick="copyActual('fileSalt')" title="Copy"><span>📋</span></button>
             <div class="field-row">
-                <input type="text" id="fileSalt" autocomplete="off" oninput="handleMask(this, 'fileSalt')" />
-                <button type="button" class="copy-btn" onclick="copyActual('fileSalt')" title="Copy"><span>📋</span></button>
+                <input type="text" id="fileSalt" autocomplete="off" oninput="handleMask(this, 'fileSalt')" />                
             </div>
-            <button onclick="encryptFile()">Encrypt File</button>
-            <h3>Encrypted String:</h3>
+            <button onclick="encryptFile()">Cook</button>
+            <h3>Food:</h3><button type="button" class="copy-btn" onclick="copyActual('fileEncryptedOutput')" title="Copy"><span>📋</span></button>
             <div class="field-row">
-                <textarea id="fileEncryptedOutput" readonly></textarea>
-                <button type="button" class="copy-btn" onclick="copyActual('fileEncryptedOutput')" title="Copy"><span>📋</span></button>
+                <textarea id="fileEncryptedOutput" readonly></textarea>                
             </div>
         </div>
 
         <hr />
 
         <div>
-            <h2>Decrypt File</h2>
-            <label for="decryptSalt">Enter Secret Salt (Password):</label>
+            <h2>Serving</h2>
+            <label for="decryptSalt">Spice:</label><button type="button" class="copy-btn" onclick="copyActual('decryptSalt')" title="Copy"><span>📋</span></button>
             <div class="field-row">
-                <input type="text" id="decryptSalt" autocomplete="off" oninput="handleMask(this, 'decryptSalt')" />
-                <button type="button" class="copy-btn" onclick="copyActual('decryptSalt')" title="Copy"><span>📋</span></button>
+                <input type="text" id="decryptSalt" autocomplete="off" oninput="handleMask(this, 'decryptSalt')" />                
             </div>
-            <label for="fileEncryptedInput">Enter Encrypted String:</label>
+            <label for="fileEncryptedInput">Food:</label><button type="button" class="copy-btn" onclick="copyActual('fileEncryptedInput')" title="Copy"><span>📋</span></button>
             <div class="field-row">
-                <textarea id="fileEncryptedInput" autocomplete="off" oninput="handleMask(this, 'fileEncryptedInput')"></textarea>
-                <button type="button" class="copy-btn" onclick="copyActual('fileEncryptedInput')" title="Copy"><span>📋</span></button>
+                <textarea id="fileEncryptedInput" autocomplete="off" oninput="handleMask(this, 'fileEncryptedInput')"></textarea>                
             </div>
-            <button onclick="decryptFile()">Decrypt File</button>
+            <button onclick="decryptFile()">Digest</button>
         </div>
     </div>
 
@@ -339,3 +329,4 @@
 
 </body>
 </html>
+
