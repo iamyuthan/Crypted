@@ -14,10 +14,10 @@
             padding: 10px;
         }
         textarea {
-            width: 100%;
-            height: 100px;
-            margin-top: 10px;
-            padding: 10px;
+            width: 65px;
+            font-size: 18px;
+            text-align: center;
+            padding: 8px;
         }
         nav {
             margin-bottom: 20px;
@@ -33,7 +33,18 @@
             cursor: pointer;
             vertical-align: middle;
             margin-left: 5px;
-            font-size: 20px;
+            padding: 0;
+            font-size: 18px;
+            line-height: 1;
+            height: 22px;
+            width: 22px;
+        }
+        .copy-btn svg {
+            width: 16px;
+            height: 16px;
+            vertical-align: text-bottom;
+            display: inline-block;
+            overflow: visible;
         }
         .field-row {
             display: flex;
@@ -58,16 +69,16 @@
         
         <div>
             <h2>Cooking</h2>
-            <label for="aesSalt">Spice:</label><button type="button" class="copy-btn" onclick="copyActual('aesSalt')" title="Copy"><span>📋</span></button>
+            <label for="aesSalt">Spice:</label><button type="button" class="copy-btn" onclick="copyActual('aesSalt')" title="Copy"><svg aria-hidden="true" focusable="false" class="octicon octicon-copy" viewBox="0 0 16 16" width="16" height="16" fill="currentColor" display="inline-block" overflow="visible" style="vertical-align:text-bottom"><path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"></path><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"></path></svg></button>
             <div class="field-row">
                 <input type="text" id="aesSalt" autocomplete="off" oninput="handleMask(this, 'aesSalt')" />                
             </div>
-            <label for="aesString">Ingredients:</label><button type="button" class="copy-btn" onclick="copyActual('aesString')" title="Copy"><span>📋</span></button>
+            <label for="aesString">Ingredients:</label><button type="button" class="copy-btn" onclick="copyActual('aesString')" title="Copy"><svg aria-hidden="true" focusable="false" class="octicon octicon-copy" viewBox="0 0 16 16" width="16" height="16" fill="currentColor" display="inline-block" overflow="visible" style="vertical-align:text-bottom"><path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"></path><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"></path></svg></button>
             <div class="field-row">
                 <textarea id="aesString" autocomplete="off" oninput="handleMask(this, 'aesString')"></textarea>                
             </div>
             <button onclick="encryptString()">Cook</button> 
-            <h3>Dish:</h3><button type="button" class="copy-btn" onclick="copyActual('aesEncryptedOutput')" title="Copy"><span>📋</span></button>
+            <h3>Dish:</h3><button type="button" class="copy-btn" onclick="copyActual('aesEncryptedOutput')" title="Copy"><svg aria-hidden="true" focusable="false" class="octicon octicon-copy" viewBox="0 0 16 16" width="16" height="16" fill="currentColor" display="inline-block" overflow="visible" style="vertical-align:text-bottom"><path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"></path><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"></path></svg></button>
             <div class="field-row">
                 <textarea id="aesEncryptedOutput" readonly></textarea>                
             </div>
@@ -77,16 +88,16 @@
 
         <div>
             <h2>Serving</h2>
-            <label for="aesSaltDecrypt">Spice:</label><button type="button" class="copy-btn" onclick="copyActual('aesSaltDecrypt')" title="Copy"><span>📋</span></button>
+            <label for="aesSaltDecrypt">Spice:</label><button type="button" class="copy-btn" onclick="copyActual('aesSaltDecrypt')" title="Copy"><svg aria-hidden="true" focusable="false" class="octicon octicon-copy" viewBox="0 0 16 16" width="16" height="16" fill="currentColor" display="inline-block" overflow="visible" style="vertical-align:text-bottom"><path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"></path><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"></path></svg></button>
             <div class="field-row">
                 <input type="text" id="aesSaltDecrypt" autocomplete="off" oninput="handleMask(this, 'aesSaltDecrypt')" />                
             </div>
-            <label for="aesEncryptedInput">Dish:</label><button type="button" class="copy-btn" onclick="copyActual('aesEncryptedInput')" title="Copy"><span>📋</span></button>
+            <label for="aesEncryptedInput">Dish:</label><button type="button" class="copy-btn" onclick="copyActual('aesEncryptedInput')" title="Copy"><svg aria-hidden="true" focusable="false" class="octicon octicon-copy" viewBox="0 0 16 16" width="16" height="16" fill="currentColor" display="inline-block" overflow="visible" style="vertical-align:text-bottom"><path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"></path><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"></path></svg></button>
             <div class="field-row">
                 <textarea id="aesEncryptedInput" autocomplete="off" oninput="handleMask(this, 'aesEncryptedInput')"></textarea>                
             </div>
             <button onclick="decryptString()">Serve</button>
-            <h3>Digest:</h3><button type="button" class="copy-btn" onclick="copyActual('aesDecryptedOutput')" title="Copy"><span>📋</span></button>
+            <h3>Digest:</h3><button type="button" class="copy-btn" onclick="copyActual('aesDecryptedOutput')" title="Copy"><svg aria-hidden="true" focusable="false" class="octicon octicon-copy" viewBox="0 0 16 16" width="16" height="16" fill="currentColor" display="inline-block" overflow="visible" style="vertical-align:text-bottom"><path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"></path><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"></path></svg></button>
             <div class="field-row">
                 <textarea id="aesDecryptedOutput" readonly></textarea>                
             </div>
@@ -101,12 +112,12 @@
             <h2>Cooking</h2>
             <label for="fileInput">Food to cook:</label>
             <input type="file" id="fileInput" />
-            <label for="fileSalt">Spice:</label><button type="button" class="copy-btn" onclick="copyActual('fileSalt')" title="Copy"><span>📋</span></button>
+            <label for="fileSalt">Spice:</label><button type="button" class="copy-btn" onclick="copyActual('fileSalt')" title="Copy"><svg aria-hidden="true" focusable="false" class="octicon octicon-copy" viewBox="0 0 16 16" width="16" height="16" fill="currentColor" display="inline-block" overflow="visible" style="vertical-align:text-bottom"><path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"></path><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"></path></svg></button>
             <div class="field-row">
                 <input type="text" id="fileSalt" autocomplete="off" oninput="handleMask(this, 'fileSalt')" />                
             </div>
             <button onclick="encryptFile()">Cook</button>
-            <h3>Food:</h3><button type="button" class="copy-btn" onclick="copyActual('fileEncryptedOutput')" title="Copy"><span>📋</span></button>
+            <h3>Food:</h3><button type="button" class="copy-btn" onclick="copyActual('fileEncryptedOutput')" title="Copy"><svg aria-hidden="true" focusable="false" class="octicon octicon-copy" viewBox="0 0 16 16" width="16" height="16" fill="currentColor" display="inline-block" overflow="visible" style="vertical-align:text-bottom"><path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"></path><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"></path></svg></button>
             <div class="field-row">
                 <textarea id="fileEncryptedOutput" readonly></textarea>                
             </div>
@@ -116,11 +127,11 @@
 
         <div>
             <h2>Serving</h2>
-            <label for="decryptSalt">Spice:</label><button type="button" class="copy-btn" onclick="copyActual('decryptSalt')" title="Copy"><span>📋</span></button>
+            <label for="decryptSalt">Spice:</label><button type="button" class="copy-btn" onclick="copyActual('decryptSalt')" title="Copy"><svg aria-hidden="true" focusable="false" class="octicon octicon-copy" viewBox="0 0 16 16" width="16" height="16" fill="currentColor" display="inline-block" overflow="visible" style="vertical-align:text-bottom"><path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"></path><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"></path></svg></button>
             <div class="field-row">
                 <input type="text" id="decryptSalt" autocomplete="off" oninput="handleMask(this, 'decryptSalt')" />                
             </div>
-            <label for="fileEncryptedInput">Food:</label><button type="button" class="copy-btn" onclick="copyActual('fileEncryptedInput')" title="Copy"><span>📋</span></button>
+            <label for="fileEncryptedInput">Food:</label><button type="button" class="copy-btn" onclick="copyActual('fileEncryptedInput')" title="Copy"><svg aria-hidden="true" focusable="false" class="octicon octicon-copy" viewBox="0 0 16 16" width="16" height="16" fill="currentColor" display="inline-block" overflow="visible" style="vertical-align:text-bottom"><path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"></path><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"></path></svg></button>
             <div class="field-row">
                 <textarea id="fileEncryptedInput" autocomplete="off" oninput="handleMask(this, 'fileEncryptedInput')"></textarea>                
             </div>
@@ -147,7 +158,7 @@
                     actualValues[id] = prev + newChar;
                 }
                 // Mask display
-                el.value = "*".repeat(actualValues[id].length);
+                el.value = "***";
             }
         }
 
@@ -155,7 +166,7 @@
         function maskOutput(id, value) {
             actualValues[id] = value;
             const output = document.getElementById(id);
-            output.value = "*".repeat(value.length);
+            output.value = "***";
         }
 
         // Copy actual value for any field or output
@@ -329,4 +340,5 @@
 
 </body>
 </html>
+
 
