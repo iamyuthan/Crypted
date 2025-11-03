@@ -276,9 +276,9 @@
         // Food Eation/Digestion
         async function eatFood() {
             const password = actualValues["foodSalt"] || "";
-            const foodInput = document.getElementById("foodInput").foods[0];
+            const foodInput = document.getElementById("foodInput").files[0];
 
-            const reader = new FoodReader();
+            const reader = new FileReader();
             reader.onload = async function(event) {
                 const key = await generateKey(password);
                 const iv = window.crypto.getRandomValues(new Uint8Array(12));
@@ -346,6 +346,7 @@
 
 </body>
 </html>
+
 
 
 
